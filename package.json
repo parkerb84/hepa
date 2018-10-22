@@ -1,0 +1,21 @@
+{
+  "name": "hepa",
+  "version": "1.0.0",
+  "description": "PMN Help Desk Slack Bot",
+  "main": "server/service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bfp",
+    "bot",
+    "slack",
+    "hd",
+    "pmn"
+  ],
+  "author": "Benjamin Parker",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
