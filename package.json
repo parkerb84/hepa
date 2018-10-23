@@ -16,6 +16,8 @@
   "author": "Benjamin Parker",
   "license": "ISC",
   "dependencies": {
+    "@slack/client": "^4.8.0",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4"
   }
 }
