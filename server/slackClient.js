@@ -14,19 +14,26 @@ function handleOnMessage(message) {
       console.log(err);
       return;
     }
-
-    if (!res.intent) {
-      rtm.sendMessage('Sorry I don\'t understand.', message.channel, function messageSent() {
-    
-      });
-    } else if(res.intent[0].value == 'time' && res.location) {
-      rtm.sendMessage(`I don't know the time in ${res.location[0].resolved.values[0].name}`, message.channel, function messageSent() {
-    
-      });
-    } else {
+    try {
+      if (!res.intent) {
+        rtm.sendMessage('Sorry I don\'t understand.', message.channel, function messageSent() {
+      
+        });
+      } else if(res.intent[0].value == 'time' && typeof(res.location[0].resolved.values[0].name) != 'undefined') {
+        rtm.sendMessage(`I don't know the time in ${res.location[0].resolved.values[0].name}`, message.channel, function messageSent() {
+      
+        });
+      } else {
+        console.log(res);
+        rtm.sendMessage('Sorry I don\'t understand.', message.channel, function messageSent() {
+      
+        });
+      }
+    }
+    catch(e) {
       console.log(res);
       rtm.sendMessage('Sorry I don\'t understand.', message.channel, function messageSent() {
-    
+      
       });
     }
   }); 
