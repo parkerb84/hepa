@@ -19,7 +19,7 @@ function handleOnMessage(message) {
         rtm.sendMessage('Sorry I don\'t understand.', message.channel, function messageSent() {
       
         });
-      } else if(res.intent[0].value == 'time' && typeof(res.location[0].resolved.values[0].name) != 'undefined') {
+      } else if(res.intent[0].value == 'time' && res.location[0].resolved.values[0].name) {
         rtm.sendMessage(`I don't know the time in ${res.location[0].resolved.values[0].name}`, message.channel, function messageSent() {
       
         });
