@@ -9,34 +9,32 @@ function handleOnAuthenticated(rtmStartData) {
 }
 
 function handleOnMessage(message) {
-  nlp.ask(message.text, (err, res) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    try {
-      if (!res.intent) {
-        rtm.sendMessage('Sorry I don\'t understand.', message.channel, function messageSent() {
-      
-        });
-      } else if(res.intent[0].value == 'time' && res.location[0].resolved.values[0].name) {
-        rtm.sendMessage(`I don't know the time in ${res.location[0].resolved.values[0].name}`, message.channel, function messageSent() {
-      
-        });
-      } else {
-        console.log(res);
-        rtm.sendMessage('Sorry I don\'t understand.', message.channel, function messageSent() {
-      
-        });
+  if(message.text.toLowerCase().includes('hepa')) {
+    nlp.ask(message.text, (err, res) => {
+      if (err) {
+        console.log(err);
+        return;
       }
-    }
-    catch(e) {
-      console.log(res);
-      rtm.sendMessage('Sorry I don\'t understand.', message.channel, function messageSent() {
-      
-      });
-    }
-  }); 
+      try {
+        if(!res.intent || !res.intent[0] || !res.intent[0].value) {
+          throw new Error("Could not extract intent.");       
+        }
+        const intent = require('./intents/' + res.intent[0].value + 'Intent');
+
+        intent.process(res, function(error, response) {
+          if(error) {
+            console.log(error.message);
+            return;
+          }
+          return rtm.sendMessage(response, message.channel);
+        })
+      } catch(err) {
+        console.log(err);
+        console.log(res);
+        rtm.sendMessage("Sorry, I don't know what you are talking about.", message.channel);
+      }
+    });
+  }
 }
 
 function addAuthenticatedHandler(rtm, handler) {
