@@ -1,7 +1,8 @@
 module.exports = {
     "env": {
         "es6": true,
-        "node": true
+        "node": true,
+        "mocha": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -10,7 +11,7 @@ module.exports = {
     "rules": {
         "indent": [
             "error",
-            "spaces"
+            2
         ],
         "linebreak-style": [
             "error",

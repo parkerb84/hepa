@@ -6,7 +6,8 @@ const service = require('../server/service')(config);
 const http = require('http');
 const server = http.createServer(service);
 const slackClient = require('../server/slackClient');
-const witClient = require('../server/witClient')(config.witToken);
+const WitClient = require('../server/witClient');
+const witClient = new WitClient(config.witToken);
 
 const slackToken = config.slackToken;
 const slackLogLevel = 'info';
