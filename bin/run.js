@@ -5,18 +5,14 @@ const config = require('../config');
 const service = require('../server/service')(config);
 const http = require('http');
 const server = http.createServer(service);
-const slackClient = require('../server/slackClient');
+const SlackClient = require('../server/slackClient');
 const WitClient = require('../server/witClient');
 const witClient = new WitClient(config.witToken);
 
-const slackToken = config.slackToken;
-const slackLogLevel = 'info';
-
 const serviceRegistry = service.get('serviceRegistry');
-const rtm = slackClient.init(slackToken, slackLogLevel, witClient, serviceRegistry);
-rtm.start();
+const slackClient = new SlackClient(config.slackToken, config.slackLogLevel, witClient, serviceRegistry);
 
-slackClient.addAuthenticatedHandler(rtm, () => {
+slackClient.start(() => {
   server.listen(3000);
 });
 
