@@ -5,10 +5,10 @@ const service = express();
 const ServiceRegistry = require('./serviceRegistry');
 
 module.exports = (config) => {
-  const serviceRegistry = new ServiceRegistry(config.serviceTimeout);
+  const serviceRegistry = new ServiceRegistry(config.serviceTimeout, config.log());
   service.set('serviceRegistry', serviceRegistry);
 
-  service.put('/service/:intent/:port', (req, res, next) => {
+  service.put('/service/:intent/:port', (req, res) => {
     const serviceIntent = req.params.intent;
     const servicePort = req.params.port;
     
