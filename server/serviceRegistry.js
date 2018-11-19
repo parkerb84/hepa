@@ -1,9 +1,9 @@
 'use strict';
 
 class ServiceRegistry {
-  constructor() {
+  constructor(timeout) {
     this._services = [];
-    this._timeout = 30;
+    this._timeout = timeout;
   }
 
   add(intent, ip, port) {
