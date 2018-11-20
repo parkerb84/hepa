@@ -18,6 +18,7 @@ module.exports = {
   slackToken: process.env.SLACK_TOKEN,
   slackLogLevel: 'info',
   serviceTimeout: 30,
+  hepaApiToken: process.env.HEPA_API_TOKEN,
   log: (env) => {
     if(env) return log[env]();
     return log[process.env.NODE_ENV || 'development']();
