@@ -6,3 +6,4 @@ node_modules
 # Misc
 .DS_Store
 .env
+.nyc_output

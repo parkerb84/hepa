@@ -4,7 +4,15 @@
   "description": "PMN Help Desk Slack Bot",
   "main": "server/service.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha --recursive test",
+    "start": "node ./bin/run"
+  },
+  "engines": {
+    "node": "10.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parkerb84/hepa"
   },
   "keywords": [
     "bfp",
@@ -18,8 +26,15 @@
   "license": "ISC",
   "dependencies": {
     "@slack/client": "^4.8.0",
+    "bunyan": "^1.8.12",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "superagent": "^4.0.0-beta.5"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "should": "^13.2.3",
+    "supertest": "^3.3.0"
   }
 }
