@@ -4,7 +4,7 @@
   "description": "PMN Help Desk Slack Bot",
   "main": "server/service.js",
   "scripts": {
-    "test": "nyc mocha --recursive test",
+    "test": "snyk test && nyc mocha --recursive test",
     "start": "node ./bin/run"
   },
   "engines": {
