@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 
 require('should');
 const config = require('../../config');
@@ -9,7 +9,8 @@ describe('slackClient', () => {
     const slackClient = new SlackClient(config.slackToken, config.slackLogLevel, null, null, config.log('test'));
     slackClient.start((slackRes) => {
       slackRes.ok.should.be.true;
+      slackClient.stop();
       return done();
     });
   });
-});*/
+});
